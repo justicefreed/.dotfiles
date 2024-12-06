@@ -1,0 +1,43 @@
+set afterends
+set atblanks
+set autoindent
+set breaklonglines
+set constantshow
+set indicator
+set jumpyscrolling
+set fill 80
+set linenumbers
+set minibar
+set mouse
+set nohelp
+set positionlog
+set quickblank
+set softwrap
+set smarthome
+set tabsize 4
+set tabstospaces
+set trimblanks
+set zap
+
+set selectedcolor white,slate
+set numbercolor slate
+set titlecolor white,slate
+set functioncolor slate
+set keycolor white,slate
+set scrollercolor latte
+
+bind M-F nextword all
+bind M-B prevword all
+bind ^E up all
+bind ^A down all
+bind ^F findnext main
+bind ^D findprevious main
+
+unbind M-C all
+unbind M-V all
+bind ^V verbatim main
+bind M-Z undo main
+bind Sh-M-Z redo main
+bind M-Y redo main
+bind Sh-M-Y nosyntax main
+bind ^C center main
