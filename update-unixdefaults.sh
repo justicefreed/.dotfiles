@@ -4,4 +4,4 @@ wget -O ~/.bash_profile https://raw.githubusercontent.com/justicefreed/unixdefau
 wget -O ~/.nanorc https://raw.githubusercontent.com/justicefreed/unixdefaults/refs/heads/main/.nanorc
 
 # update myself
-wget -O /usr/bin/update-unixdefaults https://raw.githubusercontent.com/justicefreed/unixdefaults/refs/heads/main/update-unixdefaults.sh | chmod +x /usr/bin/update-unixdefaults
+wget -O /usr/bin/update-unixdefaults https://raw.githubusercontent.com/justicefreed/unixdefaults/refs/heads/main/update-unixdefaults.sh && chmod +x /usr/bin/update-unixdefaults
