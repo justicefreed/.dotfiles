@@ -1,3 +1,5 @@
+include /usr/share/nano/*.nanorc
+
 set afterends
 set atblanks
 set autoindent
