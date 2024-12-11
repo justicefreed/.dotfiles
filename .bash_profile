@@ -53,8 +53,8 @@ case ${TERM} in
 esac
 
 # Move to the bottom bar
-CSI=$'\e'"["
-PS1="\[${CSI}s${CSI}1;$((LINES-1))r${CSI}$LINES;1f\]"
+#CSI=$'\e'"["
+#PS1="\[${CSI}s${CSI}1;$((LINES-1))r${CSI}$LINES;1f\]"
 
 # Set colorful PS1 only on colorful terminals.
 # dircolors --print-database uses its own built-in database
@@ -101,10 +101,12 @@ _COLORDefault='\033[39m'
 _COLORBlack='\033[30m'
 _COLORBlue='\033[34m'
 _COLORBoldBlue='\033[1;34m'
+_COLORLightBlue='\033[1;94m'
 _COLORRed='\033[31m'
 _COLORBoldRed='\033[1;31m'
 _COLORBrightRed='\033[91m'
 _COLORBoldMagenta='\033[1;35m'
+_COLORLightMagenta='\033[95m'
 _COLORYellow='\033[33m'
 _COLORBoldYellow='\033[1;33m'
 _COLORBoldBrightYellow='\033[1;93m'
@@ -119,9 +121,9 @@ function stripslash() {
 }
 
 if ${use_color} ; then
-    PS1+="${_COLORBackgroundDarkGrey} ${_COLORBoldMagenta}\u${_COLORLightGrey}@${_COLORBoldBlue}\h  ${_COLORBoldYellow}"
-    PS1+='$(echo $(dirname $PWD | stripslash))/'
-    PS1+="${_COLORBoldBrightYellow}\W\[\033[K\]"
+    PS1+="${_COLORBoldMagenta}\u${_COLORDarkGrey}@${_COLORLightMagenta}\h ${_COLORBoldYellow}"
+    #PS1+='$(echo $(dirname $PWD | stripslash))/'
+    #PS1+="${_COLORBoldBrightYellow}\W\ LINES:${LINES}[\033[K\]"
 
         #BSD#@export CLICOLOR=1
 
@@ -139,15 +141,16 @@ else
 fi
 
 # change back to the typing line
-PS1+="${CSI}K${CSI}u"
+#PS1+="${CSI}K${CSI}u"
 
 if ${use_color} ; then
-    PS1+="${_COLORreset}${_COLORBoldYellow}\$  ${_COLORBoldBlue}"
-    #PS1+="${_COLORreset}${_COLORBoldYellow} \W/ \$  ${_COLORBoldBlue}"
+    #PS1+="${_COLORreset}${_COLORBoldYellow}\$  ${_COLORBoldBlue}"
+    PS1+="${_COLORreset}${_COLORBoldYellow}\W/\$ ${_COLORLightBlue}"
     trap 'echo -ne "\033[0m"' DEBUG
-    PROMPT_COMMAND="x0=\$?;if ((\$x0 > 0)); then echo '${_COLORRed}# exit status = '\$x0' -- From PROMPT_COMMAND$_COLORreset'; fi"
+    #PROMPT_COMMAND="x0=\$?;if ((\$x0 > 0)); then echo '${_COLORRed}# exit status = '\$x0' -- From PROMPT_COMMAND$_COLORreset'; fi"
 else
     PS1+='\$  '
 fi
+
 # Try to keep environment pollution down, EPA loves us.
 unset use_color sh
