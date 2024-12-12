@@ -114,10 +114,6 @@ _COLORLightBlue='\[\033[94m\]'
 _COLORLightGrey='\[\033[37m\]'
 _COLORDarkGrey='\[\033[90m\]'
 
-function stripslash() {
-    return ${1%/}
-}
-
 if ${use_color} ; then
     PS1+="${_COLORBoldMagenta}\u${_COLORDarkGrey}@${_COLORLightMagenta}\h ${_COLORBoldYellow}\W/\$ ${_COLORLightBlue}"
     trap 'echo -ne "\033[0m"' DEBUG
@@ -134,11 +130,6 @@ if ${use_color} ; then
 else
         # show root@ when we don't have colors
         PS1+='\u@\h \w \$ '
-fi
-
-if ${use_color} ; then
-else
-    PS1+='\$  '
 fi
 
 # Try to keep environment pollution down, EPA loves us.
