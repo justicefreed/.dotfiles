@@ -89,35 +89,35 @@ else
         esac
 fi
 
-_COLORreset='\[\033[0m\]'
-_COLORBackgroundDarkGrey='\[\033[100m\]'
-_COLORBackgroundDefault='\[\033[49m\]'
-_COLORBackgroundYellow='\[\033[43m\]'
-_COLORBackgroundLightBlue='\[\033[104m\]'
-_COLORBoldWhite='\[\033[1;97m\]'
-_COLORDefault='\[\033[39m\]'
-_COLORBlack='\[\033[30m\]'
-_COLORBlue='\[\033[34m\]'
-_COLORBoldBlue='\[\033[1;34m\]'
-_COLORLightBlue='\[\033[1;94m\]'
-_COLORRed='\[\033[31m\]'
-_COLORBoldRed='\[\033[1;31m\]'
-_COLORBrightRed='\[\033[91m\]'
-_COLORBoldMagenta='\[\033[1;35m\]'
-_COLORLightMagenta='\[\033[95m\]'
-_COLORYellow='\[\033[33m\]'
-_COLORBoldYellow='\[\033[1;33m\]'
-_COLORBoldBrightYellow='\[\033[1;93m\]'
-_COLORGreen='\[\033[32m\]'
-_COLORCyan='\[\033[36m\]'
-_COLORLightBlue='\[\033[94m\]'
-_COLORLightGrey='\[\033[37m\]'
-_COLORDarkGrey='\[\033[90m\]'
+_COLORreset='\033[0m'
+_COLORBackgroundDarkGrey='\033[100m'
+_COLORBackgroundDefault='\033[49m'
+_COLORBackgroundYellow='\033[43m'
+_COLORBackgroundLightBlue='\033[104m'
+_COLORBoldWhite='\033[1;97m'
+_COLORDefault='\033[39m'
+_COLORBlack='\033[30m'
+_COLORBlue='\033[34m'
+_COLORBoldBlue='\033[1;34m'
+_COLORLightBlue='\033[1;94m'
+_COLORRed='\033[31m'
+_COLORBoldRed='\033[1;31m'
+_COLORBrightRed='\033[91m'
+_COLORBoldMagenta='\033[1;35m'
+_COLORLightMagenta='\033[95m'
+_COLORYellow='\033[33m'
+_COLORBoldYellow='\033[1;33m'
+_COLORBoldBrightYellow='\033[1;93m'
+_COLORGreen='\033[32m'
+_COLORCyan='\033[36m'
+_COLORLightBlue='\033[94m'
+_COLORLightGrey='\033[37m'
+_COLORDarkGrey='\033[90m'
 
 if ${use_color} ; then
-    PS1+="${_COLORBoldMagenta}\u${_COLORDarkGrey}@${_COLORLightMagenta}\h ${_COLORBoldYellow}\W/\$ ${_COLORLightBlue}"
+    PS1+="\[${_COLORBoldMagenta}\]\u\[${_COLORDarkGrey}\]@\[${_COLORLightMagenta}\]\h \[${_COLORBoldYellow}\]\W/\$ \[${_COLORLightBlue}\]"
     trap 'echo -ne "\033[0m"' DEBUG
-    PROMPT_COMMAND="x0=\$?;if ((\$x0 > 0)); then echo '${_COLORRed}# ERROR exit status = '\$x0'$_COLORreset'; fi"
+    PROMPT_COMMAND="x0=\$?;if ((\$x0 > 0)); then echo -e '\033[1;31m# ERROR exit status = '\$x0'\033[0m '; fi"
 
     ## Colorize the ls output ##
     alias ls='ls --color=auto'
@@ -128,8 +128,8 @@ if ${use_color} ; then
 
     alias grep='grep --colour=auto'
 else
-        # show root@ when we don't have colors
-        PS1+='\u@\h \w \$ '
+    # show root@ when we don't have colors
+    PS1+='\u@\h \w \$ '
 fi
 
 # Try to keep environment pollution down, EPA loves us.
