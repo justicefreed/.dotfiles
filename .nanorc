@@ -3,18 +3,17 @@ include /usr/share/nano/*.nanorc
 set afterends
 set atblanks
 set autoindent
-set breaklonglines
+unset breaklonglines
 set constantshow
 set indicator
 set jumpyscrolling
 set fill 80
 set linenumbers
 set minibar
-set mouse
+unset mouse
 set nohelp
 set positionlog
 set quickblank
-set nowrap
 set softwrap
 set smarthome
 set tabsize 4
