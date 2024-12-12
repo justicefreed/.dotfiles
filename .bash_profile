@@ -54,10 +54,6 @@ case ${TERM} in
                 ;;
 esac
 
-# Move to the bottom bar
-#CSI=$'\e'"["
-#PS1="\[${CSI}s${CSI}1;$((LINES-1))r${CSI}$LINES;1f\]"
-
 # Set colorful PS1 only on colorful terminals.
 # dircolors --print-database uses its own built-in database
 # instead of using /etc/DIR_COLORS.  Try to use the external file
@@ -93,63 +89,54 @@ else
         esac
 fi
 
-_COLORreset='\033[0m'
-_COLORBackgroundDarkGrey='\033[100m'
-_COLORBackgroundDefault='\033[49m'
-_COLORBackgroundYellow='\033[43m'
-_COLORBackgroundLightBlue='\033[104m'
-_COLORBoldWhite='\033[1;97m'
-_COLORDefault='\033[39m'
-_COLORBlack='\033[30m'
-_COLORBlue='\033[34m'
-_COLORBoldBlue='\033[1;34m'
-_COLORLightBlue='\033[1;94m'
-_COLORRed='\033[31m'
-_COLORBoldRed='\033[1;31m'
-_COLORBrightRed='\033[91m'
-_COLORBoldMagenta='\033[1;35m'
-_COLORLightMagenta='\033[95m'
-_COLORYellow='\033[33m'
-_COLORBoldYellow='\033[1;33m'
-_COLORBoldBrightYellow='\033[1;93m'
-_COLORGreen='\033[32m'
-_COLORCyan='\033[36m'
-_COLORLightBlue='\033[94m'
-_COLORLightGrey='\033[37m'
-_COLORDarkGrey='\033[90m'
+_COLORreset='\[\033[0m\]'
+_COLORBackgroundDarkGrey='\[\033[100m\]'
+_COLORBackgroundDefault='\[\033[49m\]'
+_COLORBackgroundYellow='\[\033[43m\]'
+_COLORBackgroundLightBlue='\[\033[104m\]'
+_COLORBoldWhite='\[\033[1;97m\]'
+_COLORDefault='\[\033[39m\]'
+_COLORBlack='\[\033[30m\]'
+_COLORBlue='\[\033[34m\]'
+_COLORBoldBlue='\[\033[1;34m\]'
+_COLORLightBlue='\[\033[1;94m\]'
+_COLORRed='\[\033[31m\]'
+_COLORBoldRed='\[\033[1;31m\]'
+_COLORBrightRed='\[\033[91m\]'
+_COLORBoldMagenta='\[\033[1;35m\]'
+_COLORLightMagenta='\[\033[95m\]'
+_COLORYellow='\[\033[33m\]'
+_COLORBoldYellow='\[\033[1;33m\]'
+_COLORBoldBrightYellow='\[\033[1;93m\]'
+_COLORGreen='\[\033[32m\]'
+_COLORCyan='\[\033[36m\]'
+_COLORLightBlue='\[\033[94m\]'
+_COLORLightGrey='\[\033[37m\]'
+_COLORDarkGrey='\[\033[90m\]'
 
 function stripslash() {
     return ${1%/}
 }
 
 if ${use_color} ; then
-    PS1+="${_COLORBoldMagenta}\u${_COLORDarkGrey}@${_COLORLightMagenta}\h ${_COLORBoldYellow}"
-    #PS1+='$(echo $(dirname $PWD | stripslash))/'
-    #PS1+="${_COLORBoldBrightYellow}\W\ LINES:${LINES}[\033[K\]"
-
-        #BSD#@export CLICOLOR=1
+    PS1+="${_COLORBoldMagenta}\u${_COLORDarkGrey}@${_COLORLightMagenta}\h ${_COLORBoldYellow}\W/\$ ${_COLORLightBlue}"
+    trap 'echo -ne "\033[0m"' DEBUG
+    PROMPT_COMMAND="x0=\$?;if ((\$x0 > 0)); then echo '${_COLORRed}# ERROR exit status = '\$x0'$_COLORreset'; fi"
 
     ## Colorize the ls output ##
     alias ls='ls --color=auto'
     ## Use a long listing format ##
-    alias ll='ls -la'
+    alias ll='ls -la --color=auto'
     ## Show hidden files ##
     alias l.='ls -d .* --color=auto'
 
-        alias grep='grep --colour=auto'
+    alias grep='grep --colour=auto'
 else
         # show root@ when we don't have colors
-        PS1+='\u@\h  \w'
+        PS1+='\u@\h \w \$ '
 fi
 
-# change back to the typing line
-#PS1+="${CSI}K${CSI}u"
-
 if ${use_color} ; then
-    #PS1+="${_COLORreset}${_COLORBoldYellow}\$  ${_COLORBoldBlue}"
-    PS1+="${_COLORreset}${_COLORBoldYellow}\W/\$ ${_COLORLightBlue}"
-    trap 'echo -ne "\033[0m"' DEBUG
-    #PROMPT_COMMAND="x0=\$?;if ((\$x0 > 0)); then echo '${_COLORRed}# exit status = '\$x0' -- From PROMPT_COMMAND$_COLORreset'; fi"
 else
     PS1+='\$  '
 fi
