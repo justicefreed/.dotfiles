@@ -134,3 +134,7 @@ fi
 
 # Try to keep environment pollution down, EPA loves us.
 unset use_color sh
+
+if command -v tmux &> /dev/null && [ -z "$TMUX" ]; then
+  tmux attach-session -t default || tmux new-session -s default
+fi
