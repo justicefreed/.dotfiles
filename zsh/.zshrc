@@ -105,6 +105,7 @@ source $ZSH/oh-my-zsh.sh
 # else
 #   export EDITOR='nvim'
 # fi
+export EDITOR="nano"
 
 # Compilation flags
 # export ARCHFLAGS="-arch $(uname -m)"
@@ -120,6 +121,13 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+## Colorize the ls output ##
+alias ls='ls --color=auto'
+## Use a long listing format ##
+alias ll='ls -la --color=auto'
+## Show hidden files ##
+alias l.='ls -d .* --color=auto'
+alias grep='grep --colour=auto'
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
