@@ -91,7 +91,6 @@ plugins=(
     tailscale
     tmux
 )
-export ZSH_TMUX_AUTOSTART=true
 
 source $ZSH/oh-my-zsh.sh
 # User configuration
