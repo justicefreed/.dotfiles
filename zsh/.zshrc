@@ -1,7 +1,10 @@
+case "$TERM" in
+    tmux|screen|xterm-color|*-256color) color_prompt=yes;;
+esac
+
 if command -v tmux &> /dev/null && [ -z "$TMUX" ]; then
   tmux attach-session -t default || tmux new-session -s default
 fi
-
 
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
