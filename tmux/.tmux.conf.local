@@ -404,6 +404,14 @@ bind-key -r -T copy-mode i send-keys Up
 bind-key -r -T copy-mode k send-keys Down
 bind-key -r -T copy-mode j send-keys Left
 bind-key -r -T copy-mode l send-keys Right
+bind-key -r -T copy-mode S-Up send-keys -X begin-selection \; send-keys Up
+bind-key -r -T copy-mode S-Down send-keys -X begin-selection \; send-keys Down
+bind-key -r -T copy-mode S-Left send-keys -X begin-selection \; send-keys Left
+bind-key -r -T copy-mode S-Right send-keys -X begin-selection \; send-keys Right
+bind-key -r -T copy-mode I send-keys -X begin-selection \; send-keys Up
+bind-key -r -T copy-mode K send-keys -X begin-selection \; send-keys Down
+bind-key -r -T copy-mode J send-keys -X begin-selection \; send-keys Left
+bind-key -r -T copy-mode L send-keys -X begin-selection \; send-keys Right
 
 bind r source-file ~/.tmux.conf \; display "Reloaded!"
 
