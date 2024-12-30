@@ -400,10 +400,10 @@ set -g mouse on
 # bind C-a send-prefix
 
 bind-key -T copy-mode C-k send-keys -X copy-line-and-cancel
-bind-key -T copy-mode i send-keys Up
-bind-key -T copy-mode k send-keys Down
-bind-key -T copy-mode j send-keys Left
-bind-key -T copy-mode l send-keys Right
+bind-key -r -T copy-mode i send-keys Up
+bind-key -r -T copy-mode k send-keys Down
+bind-key -r -T copy-mode j send-keys Left
+bind-key -r -T copy-mode l send-keys Right
 
 bind r source-file ~/.tmux.conf \; display "Reloaded!"
 
