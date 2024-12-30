@@ -376,8 +376,8 @@ tmux_conf_urlscan_options="--compact --dedupe"
 # this is the place to override or undo settings
 
 set -g focus-events on
-set-hook -g pane-focus-in 'select-pane -P bg=colour0,fg=default'
-set-hook -g pane-focus-out 'select-pane -P bg=default,fg=default'
+set-hook -g pane-focus-out 'select-pane -P bg=colour0,fg=default'
+set-hook -g pane-focus-in 'select-pane -P bg=default,fg=default'
 
 # Start windows and panes at 1, not 0
 set -g base-index 1
