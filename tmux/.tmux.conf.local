@@ -375,6 +375,10 @@ tmux_conf_urlscan_options="--compact --dedupe"
 
 # this is the place to override or undo settings
 
+set -g focus-events on
+set-hook -g pane-focus-in 'select-pane -P bg=colour0,fg=default'
+set-hook -g pane-focus-out 'select-pane -P bg=default,fg=default'
+
 # Start windows and panes at 1, not 0
 set -g base-index 1
 setw -g pane-base-index 1
@@ -404,7 +408,7 @@ bind-key -r -T copy-mode i send-keys Up
 bind-key -r -T copy-mode k send-keys Down
 bind-key -r -T copy-mode j send-keys Left
 bind-key -r -T copy-mode l send-keys Right
-bind-key -r -T copy-mode S- send-keys -X begin-selection
+bind-key -T copy-mode Space send-keys -X begin-selection
 bind-key -r -T copy-mode S-Up send-keys -X begin-selection \; send-keys Up
 bind-key -r -T copy-mode S-Down send-keys -X begin-selection \; send-keys Down
 bind-key -r -T copy-mode S-Left send-keys -X begin-selection \; send-keys Left

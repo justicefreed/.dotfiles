@@ -3,3 +3,5 @@ cd ~/.dotfiles
 git pull
 /bin/bash ./init.sh
 /bin/bash ./scripts/.stow-dotfiles
+omz reload
+tmux source ~/.tmux.conf
