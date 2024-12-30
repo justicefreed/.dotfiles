@@ -379,6 +379,8 @@ tmux_conf_urlscan_options="--compact --dedupe"
 set -g base-index 1
 setw -g pane-base-index 1
 
+set -g renumber-windows on
+
 # increase history size
 #set -g history-limit 10000
 
@@ -396,6 +398,14 @@ set -g mouse on
 # unbind C-b
 # set -g prefix C-a
 # bind C-a send-prefix
+
+bind-key -T copy-mode C-k send-keys -X copy-line-and-cancel
+bind-key -T copy-mode i send-keys Up
+bind-key -T copy-mode k send-keys Down
+bind-key -T copy-mode j send-keys Left
+bind-key -T copy-mode l send-keys Right
+
+bind r source-file ~/.tmux.conf \; display "Reloaded!"
 
 # if you don't want Oh my tmux! to alter a binding or a setting, use #!important
 # bind c new-window -c '#{pane_current_path}' #!important
