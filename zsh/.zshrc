@@ -1,6 +1,10 @@
-export TERM="xterm-256color"
+#export TERM="xterm-256color"
 
 export SHELL=$(which zsh)
+
+if command -v tmux &> /dev/null && [ -z "$TMUX" ]; then
+  tmux attach-session -t default || tmux new-session -s default
+fi
 
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
@@ -88,9 +92,69 @@ plugins=(
     ssh
     tailscale
     tmux
+    zsh-syntax-highlighting
 )
 
 source $ZSH/oh-my-zsh.sh
+
+ZSH_HIGHLIGHT_HIGHLIGHTERS+=(brackets)
+
+_TM_DARK_GRAY='#282a36'
+_TM_LIGHT_GRAY='#44475a'
+_TM_BLUE='#6272a4'
+_TM_CYAN='#8be9fd'
+_TM_GREEN='#50fa7b'
+_TM_ORANGE='#ffb86c'
+_TM_PINK='#ff79c6'
+_TM_PURPLE='#bd93f9'
+_TM_RED='#ff5555'
+_TM_YELLOW='#f1fa8c'
+_TM_WHITE='#f8f8f2'
+_TM_BRIGHT_WHITE='#ffffff'
+# Define default styles.
+# main
+ZSH_HIGHLIGHT_STYLES[default]="fg=$_TM_BRIGHT_WHITE"
+ZSH_HIGHLIGHT_STYLES[unknown-token]="fg=$_TM_RED,bold"
+ZSH_HIGHLIGHT_STYLES[reserved-word]="fg=$_TM_YELLOW"
+ZSH_HIGHLIGHT_STYLES[suffix-alias]="fg=$_TM_GREEN,underline"
+ZSH_HIGHLIGHT_STYLES[global-alias]="fg=$_TM_CYAN"
+ZSH_HIGHLIGHT_STYLES[precommand]="fg=$_TM_GREEN,underline"
+ZSH_HIGHLIGHT_STYLES[commandseparator]="none"
+ZSH_HIGHLIGHT_STYLES[autodirectory]="fg=$_TM_GREEN,underline"
+ZSH_HIGHLIGHT_STYLES[path]="fg=$_TM_BRIGHT_WHITE,underline"
+ZSH_HIGHLIGHT_STYLES[path_pathseparator]=
+ZSH_HIGHLIGHT_STYLES[path_prefix_pathseparator]=
+ZSH_HIGHLIGHT_STYLES[globbing]="fg=$_TM_BLUE"
+ZSH_HIGHLIGHT_STYLES[history-expansion]="fg=$_TM_BLUE"
+ZSH_HIGHLIGHT_STYLES[command-substitution]="none"
+ZSH_HIGHLIGHT_STYLES[command-substitution-delimiter]="fg=$_TM_PINK"
+ZSH_HIGHLIGHT_STYLES[process-substitution]="none"
+ZSH_HIGHLIGHT_STYLES[process-substitution-delimiter]="fg=$_TM_PINK"
+ZSH_HIGHLIGHT_STYLES[single-hyphen-option]="none"
+ZSH_HIGHLIGHT_STYLES[double-hyphen-option]="none"
+ZSH_HIGHLIGHT_STYLES[back-quoted-argument]="none"
+ZSH_HIGHLIGHT_STYLES[back-quoted-argument-delimiter]="fg=$_TM_PINK"
+ZSH_HIGHLIGHT_STYLES[single-quoted-argument]="fg=$_TM_YELLOW"
+ZSH_HIGHLIGHT_STYLES[double-quoted-argument]="fg=$_TM_YELLOW"
+ZSH_HIGHLIGHT_STYLES[dollar-quoted-argument]="fg=$_TM_YELLOW"
+ZSH_HIGHLIGHT_STYLES[rc-quote]="fg=$_TM_CYAN"
+ZSH_HIGHLIGHT_STYLES[dollar-double-quoted-argument]="fg=$_TM_CYAN"
+ZSH_HIGHLIGHT_STYLES[back-double-quoted-argument]="fg=$_TM_CYAN"
+ZSH_HIGHLIGHT_STYLES[back-dollar-quoted-argument]="fg=$_TM_CYAN"
+ZSH_HIGHLIGHT_STYLES[assign]="none"
+ZSH_HIGHLIGHT_STYLES[redirection]="fg=$_TM_YELLOW"
+ZSH_HIGHLIGHT_STYLES[comment]="fg=$_TM_LIGHT_GRAY,bold"
+ZSH_HIGHLIGHT_STYLES[named-fd]="none"
+ZSH_HIGHLIGHT_STYLES[numeric-fd]="none"
+ZSH_HIGHLIGHT_STYLES[arg0]="fg=$_TM_GREEN"
+# brackets
+# To define styles for nested brackets up to level 4"
+ZSH_HIGHLIGHT_STYLES[bracket-level-1]="fg=$_TM_BLUE,bold"
+ZSH_HIGHLIGHT_STYLES[bracket-level-2]="fg=red,bold"
+ZSH_HIGHLIGHT_STYLES[bracket-level-3]="fg=yellow,bold"
+ZSH_HIGHLIGHT_STYLES[bracket-level-4]="fg=magenta,bold"
+
+
 # User configuration
 
 # export MANPATH="/usr/local/man:$MANPATH"
@@ -121,11 +185,12 @@ export EDITOR="nano"
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 ## Colorize the ls output ##
-alias ls='ls --color=auto'
+alias ls='lsd'
+alias la='ls -A'
 ## Use a long listing format ##
-alias ll='ls -la --color=auto'
+alias ll='lsd -lA'
 ## Show hidden files ##
-alias l.='ls -d .* --color=auto'
+alias l.='lsd -A -d .*'
 alias grep='grep --colour=auto'
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.

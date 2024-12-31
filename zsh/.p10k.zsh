@@ -28,6 +28,20 @@
   # Zsh >= 5.1 is required.
   [[ $ZSH_VERSION == (5.<1->*|<6->.*) ]] || return
 
+  local _TM_DARK_GRAY='#282a36'
+  local _TM_MED_GRAY='#363949'
+  local _TM_LIGHT_GRAY='#44475a'
+  local _TM_BLUE='#6272a4'
+  local _TM_CYAN='#8be9fd'
+  local _TM_GREEN='#50fa7b'
+  local _TM_ORANGE='#ffb86c'
+  local _TM_PINK='#ff79c6'
+  local _TM_PURPLE='#bd93f9'
+  local _TM_RED='#ff5555'
+  local _TM_YELLOW='#f1fa8c'
+  local _TM_WHITE='#f8f8f2'
+  local _TM_BRIGHT_WHITE='#ffffff'
+
   # The list of segments shown on the left. Fill it with the most important segments.
   typeset -g POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(
     status
@@ -163,7 +177,8 @@
   fi
 
   # Default background color.
-  typeset -g POWERLEVEL9K_BACKGROUND=236
+  #typeset -g POWERLEVEL9K_BACKGROUND=236
+  typeset -g POWERLEVEL9K_BACKGROUND="$_TM_MED_GRAY"
 
   # Separator between same-color segments on the left.
   typeset -g POWERLEVEL9K_LEFT_SUBSEGMENT_SEPARATOR='%244F\uE0B1'
@@ -221,9 +236,9 @@
   typeset -g POWERLEVEL9K_DIR_FOREGROUND=31
   # If directory is too long, shorten some of its segments to the shortest possible unique
   # prefix. The shortened directory can be tab-completed to the original.
-  typeset -g POWERLEVEL9K_SHORTEN_STRATEGY=truncate_to_first_and_last
+  typeset -g POWERLEVEL9K_SHORTEN_STRATEGY=truncate_to_unique
   # Replace removed segment suffixes with this symbol.
-  typeset -g POWERLEVEL9K_SHORTEN_DELIMITER=..
+  typeset -g POWERLEVEL9K_SHORTEN_DELIMITER=
   # Color of the shortened directory segments.
   typeset -g POWERLEVEL9K_DIR_SHORTENED_FOREGROUND=103
   # Color of the anchor directory segments. Anchor segments are never shortened. The first
@@ -257,7 +272,8 @@
     package.json
     stack.yaml
   )
-  typeset -g POWERLEVEL9K_SHORTEN_FOLDER_MARKER="(${(j:|:)anchor_files})"
+  # typeset -g POWERLEVEL9K_SHORTEN_FOLDER_MARKER="(${(j:|:)anchor_files})"
+  typeset -g POWERLEVEL9K_SHORTEN_FOLDER_MARKER=()
   # If set to "first" ("last"), remove everything before the first (last) subdirectory that contains
   # files matching $POWERLEVEL9K_SHORTEN_FOLDER_MARKER. For example, when the current directory is
   # /foo/bar/git_repo/nested_git_repo/baz, prompt will display git_repo/nested_git_repo/baz (first)
@@ -270,13 +286,13 @@
   # respectively.
   typeset -g POWERLEVEL9K_DIR_TRUNCATE_BEFORE_MARKER=false
   # Don't shorten this many last directory segments. They are anchors.
-  typeset -g POWERLEVEL9K_SHORTEN_DIR_LENGTH=2
+  typeset -g POWERLEVEL9K_SHORTEN_DIR_LENGTH=1
   # Shorten directory if it's longer than this even if there is space for it. The value can
   # be either absolute (e.g., '80') or a percentage of terminal width (e.g, '50%'). If empty,
   # directory will be shortened only when prompt doesn't fit or when other parameters demand it
   # (see POWERLEVEL9K_DIR_MIN_COMMAND_COLUMNS and POWERLEVEL9K_DIR_MIN_COMMAND_COLUMNS_PCT below).
   # If set to `0`, directory will always be shortened to its minimum length.
-  typeset -g POWERLEVEL9K_DIR_MAX_LENGTH=80
+  typeset -g POWERLEVEL9K_DIR_MAX_LENGTH=10
   # When `dir` segment is on the last prompt line, try to shorten it enough to leave at least this
   # many columns for typing commands.
   typeset -g POWERLEVEL9K_DIR_MIN_COMMAND_COLUMNS=40
@@ -518,28 +534,34 @@
   # Enable OK_PIPE, ERROR_PIPE and ERROR_SIGNAL status states to allow us to enable, disable and
   # style them independently from the regular OK and ERROR state.
   typeset -g POWERLEVEL9K_STATUS_EXTENDED_STATES=true
+  typeset -g POWERLEVEL9K_STATUS_BACKGROUND="$_TM_PURPLE"
+  typeset -g POWERLEVEL9K_STATUS_FOREGROUND=15
 
   # Status on success. No content, just an icon. No need to show it if prompt_char is enabled as
   # it will signify success by turning green.
   typeset -g POWERLEVEL9K_STATUS_OK=true
-  typeset -g POWERLEVEL9K_STATUS_OK_FOREGROUND=70
+  typeset -g POWERLEVEL9K_STATUS_OK_BACKGROUND="$_TM_PURPLE"
+  typeset -g POWERLEVEL9K_STATUS_OK_FOREGROUND=15
   typeset -g POWERLEVEL9K_STATUS_OK_VISUAL_IDENTIFIER_EXPANSION='✔'
 
   # Status when some part of a pipe command fails but the overall exit status is zero. It may look
   # like this: 1|0.
   typeset -g POWERLEVEL9K_STATUS_OK_PIPE=true
-  typeset -g POWERLEVEL9K_STATUS_OK_PIPE_FOREGROUND=70
+  typeset -g POWERLEVEL9K_STATUS_OK_PIPE_BACKGROUND="$_TM_PURPLE"
+  typeset -g POWERLEVEL9K_STATUS_OK_PIPE_FOREGROUND=15
   typeset -g POWERLEVEL9K_STATUS_OK_PIPE_VISUAL_IDENTIFIER_EXPANSION='✔'
 
   # Status when it's just an error code (e.g., '1'). No need to show it if prompt_char is enabled as
   # it will signify error by turning red.
   typeset -g POWERLEVEL9K_STATUS_ERROR=true
-  typeset -g POWERLEVEL9K_STATUS_ERROR_FOREGROUND=160
+  typeset -g POWERLEVEL9K_STATUS_ERROR_FOREGROUND="$_TM_WHITE"
+  typeset -g POWERLEVEL9K_STATUS_ERROR_BACKGROUND="$_TM_RED"
   typeset -g POWERLEVEL9K_STATUS_ERROR_VISUAL_IDENTIFIER_EXPANSION='✘'
 
   # Status when the last command was terminated by a signal.
   typeset -g POWERLEVEL9K_STATUS_ERROR_SIGNAL=true
-  typeset -g POWERLEVEL9K_STATUS_ERROR_SIGNAL_FOREGROUND=160
+  typeset -g POWERLEVEL9K_STATUS_ERROR_SIGNAL_FOREGROUND="$_TM_WHITE"
+  typeset -g POWERLEVEL9K_STATUS_ERROR_SIGNAL_BACKGROUND="$_TM_RED"
   # Use terse signal names: "INT" instead of "SIGINT(2)".
   typeset -g POWERLEVEL9K_STATUS_VERBOSE_SIGNAME=false
   typeset -g POWERLEVEL9K_STATUS_ERROR_SIGNAL_VISUAL_IDENTIFIER_EXPANSION='✘'
@@ -547,7 +569,8 @@
   # Status when some part of a pipe command fails and the overall exit status is also non-zero.
   # It may look like this: 1|0.
   typeset -g POWERLEVEL9K_STATUS_ERROR_PIPE=true
-  typeset -g POWERLEVEL9K_STATUS_ERROR_PIPE_FOREGROUND=160
+  typeset -g POWERLEVEL9K_STATUS_ERROR_PIPE_FOREGROUND="$_TM_WHITE"
+  typeset -g POWERLEVEL9K_STATUS_ERROR_PIPE_BACKGROUND="$_TM_RED"
   typeset -g POWERLEVEL9K_STATUS_ERROR_PIPE_VISUAL_IDENTIFIER_EXPANSION='✘'
 
   ###################[ command_execution_time: duration of the last command ]###################
