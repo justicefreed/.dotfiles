@@ -1,8 +1,6 @@
 export TERM="xterm-256color"
 
-case "$TERM" in
-    tmux|screen|xterm-color|*-256color) color_prompt=yes;;
-esac
+export SHELL=$(which zsh)
 
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
