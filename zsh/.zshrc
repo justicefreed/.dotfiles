@@ -2,7 +2,7 @@
 
 export SHELL=$(which zsh)
 
-if command -v tmux &> /dev/null && [ -z "$TMUX" ]; then
+if command -v tmux &> /dev/null && [ -z "$TMUX" ] && [ -z "$TMUX_PROGRAM" ]; then
   tmux attach-session -t default || tmux new-session -s default
 fi
 

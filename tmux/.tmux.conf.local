@@ -123,7 +123,7 @@ tmux_conf_theme=enabled
 
 
 # default theme
-set -g default-terminal "screen-256color"
+# set -g default-terminal "screen-256color"
 tmux_conf_theme_colour_1="#44475a"    # dark gray
 # tmux_conf_theme_colour_2="#282a36"    # dark purple
 tmux_conf_theme_colour_2="#21222c"    # dark purple
