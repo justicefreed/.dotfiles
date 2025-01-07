@@ -1,0 +1,3 @@
+#!/bin/bash
+cd "$HOME/.dotfiles" || exit
+for dir in */; do (stow "${dir%/}"); done

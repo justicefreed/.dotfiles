@@ -1,0 +1,10 @@
+#!/bin/bash
+if command -v apt ; then
+    sudo apt update -y
+    sudo apt full-upgrade -y
+    sudo apt autoremove -y --purge
+    sudo apt clean -y
+    history -c
+elif command -v brew ; then
+    brew update -y
+fi

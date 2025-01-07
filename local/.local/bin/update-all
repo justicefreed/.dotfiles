@@ -1,0 +1,3 @@
+#!/bin/bash
+/bin/bash ~/.dotfiles/local/.local/bin/update-system
+/bin/bash ~/.dotfiles/local/.local/bin/update-dotfiles

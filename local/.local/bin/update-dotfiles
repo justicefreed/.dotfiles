@@ -1,5 +1,5 @@
 #!/bin/bash
-cd ~/.dotfiles
+cd ~/.dotfiles || exit
 git pull
 /bin/bash ./init.sh
 # tmux source ~/.tmux.conf

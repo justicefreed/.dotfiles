@@ -1,3 +1,0 @@
-#!/bin/bash
-/bin/bash ~/.dotfiles/scripts/update-system
-/bin/bash ~/.dotfiles/scripts/update-dotfiles

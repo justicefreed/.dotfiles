@@ -1,6 +1,17 @@
 #export TERM="xterm-256color"
 
 export SHELL=$(which zsh)
+source ~/.user_profile &>/dev/null || true
+
+# set PATH so it includes user's private bin if it exists
+if [ -d "$HOME/bin" ] ; then
+  PATH="$HOME/bin:$PATH"
+fi
+# set PATH so it includes user's private bin if it exists
+if [ -d "$HOME/.local/bin" ] ; then
+  PATH="$HOME/.local/bin:$PATH"
+fi
+
 
 if command -v tmux &> /dev/null && [ -z "$TMUX" ] && [ -z "$TMUX_PROGRAM" ]; then
   tmux attach-session -t default || tmux new-session -s default
@@ -169,6 +180,8 @@ ZSH_HIGHLIGHT_STYLES[bracket-level-4]="fg=magenta,bold"
 #   export EDITOR='nvim'
 # fi
 export EDITOR="nano"
+alias sudo='sudo '
+alias nano='nano --rcfile ~/.nanorc'
 
 # Compilation flags
 # export ARCHFLAGS="-arch $(uname -m)"
