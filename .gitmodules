@@ -13,3 +13,6 @@
 [submodule "zsh/.ohmyzsh-custom/plugins/zsh-syntax-highlighting"]
 	path = zsh/.ohmyzsh-custom/plugins/zsh-syntax-highlighting
 	url = https://github.com/zsh-users/zsh-syntax-highlighting.git
+[submodule "zsh/.ohmyzsh-custom/plugins/autoswitch_virtualenv"]
+	path = zsh/.ohmyzsh-custom/plugins/autoswitch_virtualenv
+	url = https://github.com/MichaelAquilina/zsh-autoswitch-virtualenv.git

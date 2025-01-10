@@ -2,4 +2,5 @@
 cd ~/.dotfiles || exit
 git pull
 /bin/bash ./init.sh
+omz reload &>/dev/null || true
 # tmux source ~/.tmux.conf

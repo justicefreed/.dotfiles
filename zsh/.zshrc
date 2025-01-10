@@ -105,6 +105,7 @@ plugins=(
     tmux
     zsh-syntax-highlighting
 )
+command -v virtualenv && plugins=(autoswitch_virtualenv $plugins)
 
 source $ZSH/oh-my-zsh.sh
 

@@ -7,16 +7,18 @@ command -v sudo || apt install -y sudo
 
 if command -v apt ; then
     sudo apt install -y --upgrade stow zsh nano tmux
+    ln -sf /usr/share/nano/ "$HOME/.nanosyntax"
 elif command -v brew ; then
-    brew install -y stow zsh nano tmux
+    brew install stow zsh nano tmux
+    ln -sf "$(brew --prefix nano)/share/nano/" "$HOME/.nanosyntax"
 fi
 
 if command -v apt ; then
     sudo apt install -y --upgrade lsd || sudo snap install lsd
 elif command -v brew ; then
-    brew install -y lsd
+    brew install lsd
 fi
 
-chsh -s "$(which zsh)" "$USER"
+[[ "$SHELL" =~ "zsh" ]] || chsh -s "$(which zsh)" "$USER"
 
 zsh ~/.dotfiles/local/.local/bin/stow-dotfiles
