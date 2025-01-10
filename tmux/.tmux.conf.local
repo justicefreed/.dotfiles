@@ -448,6 +448,7 @@ set -g mouse on
 # set -g prefix C-a
 # bind C-a send-prefix
 
+bind-key -T prefix a set-window-option synchronize-panes
 bind-key -r -T prefix L next-window
 bind-key -r -T copy-mode PPage send-keys -X halfpage-up
 bind-key -r -T copy-mode NPage send-keys -X halfpage-down
