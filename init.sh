@@ -1,9 +1,11 @@
 #!/bin/bash
 
 cd ~/.dotfiles || exit
-git submodule update --init --recursive
 
 command -v sudo || apt install -y sudo
+
+command -v git || apt install -y git
+git submodule update --init --recursive
 
 if command -v apt ; then
     sudo apt install -y --upgrade stow zsh nano tmux
@@ -20,5 +22,6 @@ elif command -v brew ; then
 fi
 
 [[ "$SHELL" =~ "zsh" ]] || chsh -s "$(which zsh)" "$USER"
+[[ "$SHELL" =~ "zsh" ]] || export SHELL="$(which zsh)"
 
 zsh ~/.dotfiles/local/.local/bin/stow-dotfiles
