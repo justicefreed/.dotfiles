@@ -34,6 +34,7 @@ bind ^E up all
 bind ^A down all
 bind ^F findnext main
 bind ^D findprevious main
+bind ^/ comment all
 
 unbind M-C all
 unbind M-V all

@@ -429,6 +429,7 @@ setw -g pane-base-index 1
 set -g renumber-windows on
 
 set -as terminal-features ',rxvt-unicode-256color:clipboard'
+set -s set-clipboard external
 
 # increase history size
 #set -g history-limit 10000
